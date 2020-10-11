@@ -69,7 +69,7 @@ function show(nodeEl) {
     const tooltipSelector = `.tip-${nodeEl.id}`;
     if ($(tooltipSelector).length === 0 || !$(tooltipSelector).length) {
         const toolTipBlock = `<div class="sttip tip-${nodeEl.id}">
-            <div class="tooltip in"> 
+            <div class="tooltip in" > 
                 <div class="tooltip-arrow"></div>
                 <div class="tooltip-arrow second-arrow"></div>
                 <div class="popover-inner">
@@ -79,13 +79,13 @@ function show(nodeEl) {
         </div>`;
         $(nodeEl.action.selector).after(toolTipBlock);
     } else {
+        $(tooltipSelector).css('display', 'inline');
         $(tooltipSelector).show();
     }
 }
 
 function hide(nodeId) {
     const tooltipSelector = `.tip-${nodeId}`;
-    console.log($(tooltipSelector));
     if ($(tooltipSelector)) {
         $(tooltipSelector).hide();
     }

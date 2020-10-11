@@ -48,11 +48,15 @@ function handleGuideData(response) {
         for (let i = 0; i < glsData.length; i++) {
             if (glsData[i].action.type === 'tip') {
                 // Nodes for showing tool-tip.
-                const node = glsData[i].action;                
+                const node = glsData[i].action;
+                
+                // Attach event handler for adding / showing tool-tip
                 $(node.selector).on('mouseover', function() {
                     const nodeEl = glsData.find(x => x.action.selector === node.selector);
                     show(nodeEl);
                 });
+                
+                // Attach event handler for hiding tool-tip
                 $(node.selector).on('mouseout', function() {
                     const nodeEl = glsData.find(x => x.action.selector === node.selector);
                     hide(nodeEl.id);
@@ -66,6 +70,7 @@ function handleGuideData(response) {
 }
 
 function show(nodeEl) {
+    // Add tool-tip if not already added else simply show.
     const tooltipSelector = `.tip-${nodeEl.id}`;
     if ($(tooltipSelector).length === 0 || !$(tooltipSelector).length) {
         const toolTipBlock = `<div class="sttip tip-${nodeEl.id}">
@@ -85,6 +90,7 @@ function show(nodeEl) {
 }
 
 function hide(nodeId) {
+    // Hide tool-tip.
     const tooltipSelector = `.tip-${nodeId}`;
     if ($(tooltipSelector)) {
         $(tooltipSelector).hide();
